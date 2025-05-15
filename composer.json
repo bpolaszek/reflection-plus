@@ -1,0 +1,29 @@
+{
+  "name": "bentools/reflection-plus",
+  "description": "Another improved code reflection API",
+  "type": "library",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "BenTools\\ReflectionPlus\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "BenTools\\ReflectionPlus\\Tests\\": "tests/"
+    }
+  },
+  "require": {
+    "php": ">=8.4"
+  },
+  "require-dev": {
+    "pestphp/pest": "^3.8",
+    "mockery/mockery": "^1.6",
+    "symfony/var-dumper": "^7.2"
+  },
+  "config": {
+    "allow-plugins": {
+      "pestphp/pest-plugin": true
+    }
+  }
+}
