@@ -55,7 +55,7 @@ final class Reflection
     }
 
     /**
-     * @return \ReflectionClass<object>
+     * @return ReflectionClass<object>
      */
     public static function class(object|string $class): ReflectionClass
     {

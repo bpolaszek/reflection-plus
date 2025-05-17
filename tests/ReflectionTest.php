@@ -7,7 +7,7 @@ namespace BenTools\ReflectionPlus\Tests;
 use BenTools\ReflectionPlus\Reflection;
 use InvalidArgumentException;
 use Mockery;
-use Mockery\MockInterface as MockInterface;
+use Mockery\MockInterface;
 use ReflectionClass;
 use ReflectionIntersectionType;
 use ReflectionMethod;
