@@ -7,6 +7,7 @@ namespace BenTools\ReflectionPlus\Tests;
 use BenTools\ReflectionPlus\Reflection;
 use InvalidArgumentException;
 use Mockery;
+use Mockery\MockInterface as MockInterface;
 use ReflectionClass;
 use ReflectionIntersectionType;
 use ReflectionMethod;
@@ -194,6 +195,7 @@ test('getSettableClassTypes returns class names for properties with class types'
 
 test('getSettableClassTypes returns empty array for untyped properties', function () {
     // Mock a ReflectionProperty with no type
+    /** @var ReflectionProperty&MockInterface $mockProperty */
     $mockProperty = Mockery::mock(ReflectionProperty::class);
     $mockProperty->shouldReceive('getSettableType')->andReturn(null);
     $mockProperty->shouldReceive('getName')->andReturn('testProperty');
@@ -220,6 +222,7 @@ test('isTypeCompatible works with intersection types', function () {
 
 test('isTypeCompatible returns false for unknown reflection type', function () {
     // Creating a mock of a non-standard reflection type
+    /** @var ReflectionType&MockInterface $mockType */
     $mockType = Mockery::mock(ReflectionType::class);
 
     expect(Reflection::isTypeCompatible($mockType, ParentClass::class))

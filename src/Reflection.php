@@ -23,9 +23,25 @@ use function ltrim;
 final class Reflection
 {
     private static self $instance;
+
+    /**
+     * @var array<class-string, ReflectionClass<object>>
+     */
     private array $reflectionClassCache = [];
+
+    /**
+     * @var array<class-string, array<string, ReflectionProperty>>
+     */
     private array $reflectionPropertyCache = [];
+
+    /**
+     * @var array<class-string, array<string, ReflectionMethod>>
+     */
     private array $reflectionMethodCache = [];
+
+    /**
+     * @var WeakMap<ReflectionType, bool>
+     */
     private WeakMap $reflectionTypesCache;
 
     private function __construct()
@@ -38,6 +54,9 @@ final class Reflection
         return self::$instance ??= new self();
     }
 
+    /**
+     * @return \ReflectionClass<object>
+     */
     public static function class(object|string $class): ReflectionClass
     {
         $className = is_object($class) ? $class::class : $class;
@@ -83,6 +102,9 @@ final class Reflection
         );
     }
 
+    /**
+     * @param string[] $classNames
+     */
     private static function collectClassNames(ReflectionType $type, array &$classNames): void
     {
         if ($type instanceof ReflectionNamedType) {
@@ -101,6 +123,9 @@ final class Reflection
         }
     }
 
+    /**
+     * @param string[] $classNames
+     */
     public static function getBestClassForProperty(ReflectionProperty $property, array $classNames): string
     {
         return array_find($classNames, fn ($className) => self::isPropertyCompatible($property, $className))
