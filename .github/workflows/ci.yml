@@ -1,39 +1,40 @@
 name: CI Workflow
-
 on:
   push:
     branches: [ main ]
   pull_request:
-    branches: [ main ]
+
+env:
+  PHP_CS_FIXER_IGNORE_ENV: 1
 
 jobs:
-  test:
+  tests:
     runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        php:
+          - 8.4
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '8.4'
-        extensions: mbstring, xml, ctype, iconv
-        coverage: none
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
 
-    - name: Validate composer.json and composer.lock
-      run: composer validate --strict
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
 
-    - name: Cache Composer packages
-      id: composer-cache
-      uses: actions/cache@v3
-      with:
-        path: vendor
-        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-php-
+      - name: Check types
+        run: vendor/bin/phpstan analyse
 
-    - name: Install dependencies
-      run: composer install --prefer-dist --no-progress
+      - name: Check style
+        run: vendor/bin/php-cs-fixer check
 
-    - name: Run Pest tests
-      run: vendor/bin/pest
+      - name: Run test suite
+        run: vendor/bin/pest --coverage --coverage-clover=coverage.xml
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
