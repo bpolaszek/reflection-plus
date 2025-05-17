@@ -15,13 +15,24 @@ use ReflectionType;
 use ReflectionUnionType;
 
 // Test fixtures
-class ParentClass {}
-class ChildClass extends ParentClass {}
-interface TestInterface {}
-class ImplementsTestInterface implements TestInterface {}
-class ChildWithInterface extends ChildClass implements TestInterface {}
+class ParentClass
+{
+}
+class ChildClass extends ParentClass
+{
+}
+interface TestInterface
+{
+}
+class ImplementsTestInterface implements TestInterface
+{
+}
+class ChildWithInterface extends ChildClass implements TestInterface
+{
+}
 
-class ClassWithProperties {
+class ClassWithProperties
+{
     public string $stringProperty;
     public ParentClass $parentClassProperty;
     public TestInterface $interfaceProperty;

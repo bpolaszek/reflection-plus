@@ -67,7 +67,7 @@ final class Reflection
         $classNames = [];
         $type = $property->getSettableType();
 
-        if ($type === null) {
+        if (null === $type) {
             return [];
         }
 
