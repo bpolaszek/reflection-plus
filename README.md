@@ -15,17 +15,31 @@
 - **Support for complex type systems**: Full handling of union types, intersection types, and named types
 - **Performance optimized**: Uses WeakMap and other optimizations to minimize memory usage
 
+## Why?
+
+ReflectionPlus automatically caches:
+
+- ReflectionClass instances
+- ReflectionProperty instances
+- ReflectionMethod instances
+- Type compatibility results
+
+This makes it highly efficient for repeated usage, especially in loops or recursive operations.
+
+## Use Cases
+
+ReflectionPlus is particularly useful for:
+
+- Factory implementations that need to determine which concrete classes to instantiate
+- Dependency injection containers
+- Type-based serialization/deserialization systems
+- Code generators that need to inspect class structures
+- Data mappers that need to determine type compatibility
+- Framework development where reflection is frequently used
+
 ## Requirements
 
 - PHP 8.4 or higher
-
-## Installation
-
-You can install the package via composer:
-
-```bash
-composer require bentools/reflection-plus
-```
 
 ## Usage
 
@@ -149,35 +163,13 @@ $isCompatible = Reflection::isPropertyCompatible($reflectionProperty, SomeClass:
 // Returns true if SomeClass extends/is ClassA AND implements InterfaceB
 ```
 
-## Performance Considerations
+## Installation
 
-ReflectionPlus automatically caches:
+You can install the package via composer:
 
-- ReflectionClass instances
-- ReflectionProperty instances
-- ReflectionMethod instances
-- Type compatibility results
-
-This makes it highly efficient for repeated usage, especially in loops or recursive operations.
-
-## Use Cases
-
-ReflectionPlus is particularly useful for:
-
-- Factory implementations that need to determine which concrete classes to instantiate
-- Dependency injection containers
-- Type-based serialization/deserialization systems
-- Code generators that need to inspect class structures
-- Data mappers that need to determine type compatibility
-- Framework development where reflection is frequently used
-
-## How It Works
-
-The package provides a static facade to underlying reflection capabilities with an intelligent caching system. It uses:
-
-- Internal array caches for reflection classes, properties, and methods
-- A WeakMap for reflection type compatibility results
-- The "nullsafe coalescing assignment" operator (`??=`) for efficient caching
+```bash
+composer require bentools/reflection-plus
+```
 
 ## License
 
