@@ -6,6 +6,7 @@ on:
 
 env:
   PHP_CS_FIXER_IGNORE_ENV: 1
+  XDEBUG_MODE: coverage
 
 jobs:
   tests:
@@ -21,6 +22,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
+          coverage: xdebug
 
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress
@@ -32,7 +34,7 @@ jobs:
         run: vendor/bin/php-cs-fixer check
 
       - name: Run test suite
-        run: vendor/bin/pest --coverage --coverage-clover=coverage.xml
+        run: vendor/bin/pest --coverage --coverage-clover=coverage.xml --debug
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v5
