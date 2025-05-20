@@ -1,9 +1,9 @@
 # Reflection Plus!
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/bentools/reflection-plus.svg?style=flat-square)](https://packagist.org/packages/bentools/reflection-plus)
-[![Tests](https://img.shields.io/github/actions/workflow/status/bpolaszek/reflection-plus/ci.yml?branch=main&label=tests&style=flat-square)](https://github.com/bentools/reflection-plus/actions/workflows/run-tests.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/bentools/reflection-plus.svg?style=flat-square)](https://packagist.org/packages/bentools/reflection-plus)
-[![codecov](https://codecov.io/gh/bpolaszek/reflection-plus/graph/badge.svg?token=ACv1Uwlqft)](https://codecov.io/gh/bpolaszek/reflection-plus)
+[![Tests](https://img.shields.io/github/actions/workflow/status/bpolaszek/reflection-plus/ci.yml?branch=main&label=tests&style=flat-square)](https://github.com/bentools/reflection-plus/actions/workflows/run-tests.yml)
+[![Coverage](https://codecov.io/gh/bpolaszek/reflection-plus/graph/badge.svg?token=ACv1Uwlqft)](https://codecov.io/gh/bpolaszek/reflection-plus)
 
 **ReflectionPlus** is a lightweight wrapper around PHP's native Reflection API that makes working with reflection simpler, more efficient, and more intuitive.
 
